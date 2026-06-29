@@ -1,42 +1,54 @@
-<h1 align="center" id="title">Notes App Lite</h1>
+<h1 align="center" id="title">Bkappi Notes v1</h1>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/28691555/217541036-ad15b696-bd2e-4944-86af-6f706734bd9c.png" alt="project-screenshot" width="1000" height="500/"></p>
-
-<p id="description">This project is an attempt to create a very simple and lightweight notes application that uses the browser's own memory to store data.
-
+<p align="center">
+  <img src="https://cdn.bkappi.com/ProjectsAssets/Notes-V1/NotesPageExamples.png" alt="Bkappi Notes Examples" width="1000" />
 </p>
 
+<p align="center">
+  A modern, lightweight, and premium notes application built with Glassmorphism aesthetics and clean Vanilla JavaScript. It runs entirely in the browser and keeps your data locally.
+</p>
 
-### :point_right: [DEMO](https://notesapplite.netlify.app/) :rocket:
+<p align="center">
+  <strong><a href="https://notes-v1.bkappi.com/">🚀 LIVE DEMO 🚀</a></strong>
+</p>
 
-:star: Designed by
-[Bruno Kappi](https://www.instagram.com/brunokappi/)
+<hr />
 
-<h2>Project Screenshots:</h2>
+## 🧐 Features
 
-<img src="https://user-images.githubusercontent.com/28691555/217541036-ad15b696-bd2e-4944-86af-6f706734bd9c.png" alt="project-screenshot" width="1000" height="500/">
+Here is a list of the main features packed into **Bkappi Notes v1**:
 
-<img src="https://user-images.githubusercontent.com/28691555/217541455-ad901d65-67d2-4c72-af78-8d96494a6cf6.png" alt="project-screenshot" width="" height="600/">
+*   **Premium Glassmorphism UI:** A sleek, semi-transparent user interface with modern Inter typography and smooth visual feedback.
+*   **Light & Dark Themes:** Fluid toggling between light and dark modes with your preference saved automatically.
+*   **Color Customization:** Personalize each note with a custom accent color using an interactive color picker.
+*   **Collapse & Expand Notes:** Keep your dashboard organized by collapsing notes you aren't currently editing. The collapsed state persists on reload!
+*   **Markdown (.md) Export:** 
+    *   Export any individual note as a separate `.md` file.
+    *   Export all your active notes combined into a single structured `.md` file.
+*   **Instant Search:** Filter through your notes in real-time as you type, matching titles or text content.
+*   **Zero Backend / Auto-Save:** Powered entirely by the browser's `localStorage`. Your edits are saved instantly.
+*   **Smart First Load:** Includes 3 interactive sample notes on the first visit to quickly introduce the app features.
 
-<img src="https://user-images.githubusercontent.com/28691555/217541636-8a648b9a-7d75-4a0f-950d-4fd059475486.png" alt="project-screenshot" width="" height="600/">
+## 💻 Tech Stack
 
+This project was built with simplicity and maximum performance in mind:
 
-<h2>🧐 Features</h2>
+*   **HTML5** (semantic structure and native templates)
+*   **CSS3** (custom properties, grid layout, backdrop-filters, and transitions)
+*   **Vanilla JavaScript** (structured with clean module patterns, event delegation, and direct DOM manipulation)
 
-Here're some of the project's best features:
+## 🚀 How to Run Locally
 
-*   Add Note
-*   Delete note
-*   Edit note
-  
-  
-<h2>💻 Built with</h2>
+Since the application uses standard JavaScript, you can run it easily:
 
-Technologies used in the project:
+1. Clone this repository:
+   ```bash
+   git clone git@github.com:BrunoKappi/notesapp-v1.git
+   ```
+2. Open `index.html` directly in your browser, or serve it using a lightweight local server (e.g. *VS Code Live Server* or `npx serve`).
 
-*   HTML
-*   CSS
-*   Javascript
+---
 
-
-
+<p align="center">
+  Designed and developed with ❤️ by <a href="https://www.instagram.com/brunokappi/">Bruno Kappi</a>
+</p>

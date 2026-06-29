@@ -1,35 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas</title>
+    <title>Bkappi Notes v1</title>
+    <link rel="icon" type="image/x-icon" href="https://cdn.bkappi.com/ProjectsAssets/BkappiGeneral/bkappiIcon.ico">
     <link rel="stylesheet" href="css/index.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    
+    <!-- Modern Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons: FontAwesome -->
     <script src="https://kit.fontawesome.com/b1dcb3f062.js" crossorigin="anonymous"></script>
-
 </head>
-
 <body>
+    
+    <header class="app-header">
+        <div class="header-content">
+            <h1><img src="https://cdn.bkappi.com/ProjectsAssets/BkappiGeneral/bkappiIcon.ico" class="navbar-icon" alt="Icon"> Bkappi Notes v1</h1>
+            <div class="header-actions">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search notes...">
+                </div>
+                <button id="themeToggleBtn" class="btn-icon" title="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="exportAllBtn" class="btn-icon" title="Export all notes to MD">
+                    <i class="fa-solid fa-file-export"></i>
+                </button>
+                <button id="deleteAllBtn" class="btn-icon" title="Delete all notes">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        </div>
+    </header>
 
- 
+    <main class="app-main">
+        <div id="NoNotes" class="empty-state">
+            <i class="fa-solid fa-folder-open empty-icon"></i>
+            <p>You don't have any notes yet :(</p>
+            <span>Click on the + to add a note</span>
+        </div>
+        
+        <div class="notes-grid" id="Notes">
+            <!-- Notes will be injected here by JS -->
+        </div>
+    </main>
 
-    <h1>Notas</h1>
+    <button id="addNoteBtn" class="fab-button" title="Add Note">
+        <i class="fa-solid fa-plus"></i>
+    </button>
 
-    <button id="fixedbutton" onclick="AddNote()">+</button>
-    <i id="fixedbuttonDelete" onclick="RemoveAll()" class="TrashDeleteAll fa-solid fa-trash"></i>
-    <p id="NoNotes">Você não tem nenhuma nota ainda :(</p>
-    <div class="Notes" id="Notes">
-    </div>
+    <!-- Template for a Note -->
+    <template id="note-template">
+        <div class="note glass-panel">
+            <div class="note-header">
+                <input type="text" class="note-title-input" placeholder="Note Title">
+                <div class="note-menu-container">
+                    <button class="btn-icon note-menu-btn" title="Options">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                    <div class="note-menu-dropdown">
+                        <button class="dropdown-item collapse-note-btn" title="Collapse note">
+                            <i class="fa-solid fa-compress"></i> Collapse
+                        </button>
+                        <button class="dropdown-item export-note-btn" title="Export note to MD">
+                            <i class="fa-solid fa-download"></i> Export (.md)
+                        </button>
+                        <button class="dropdown-item delete-note-btn" title="Delete note">
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="note-body">
+                <textarea class="note-content-input" placeholder="Your note content..."></textarea>
+            </div>
+            <div class="note-footer">
+                <div class="color-picker">
+                    <!-- Colors will be injected dynamically -->
+                </div>
+                <span class="note-date"></span>
+            </div>
+        </div>
+    </template>
 
-
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/app.js"></script>
 </body>
-
 </html>
-
-
-<script src="js/scripts.js"></script>
