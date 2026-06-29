@@ -1,0 +1,15 @@
+
+# Automatically added agent and env ignores
+.env
+.agents/
+.env.development
+.env.production
+.antigravityignore
+.graphifyignore
+.geminiignore
+.claudeignore
+agentsIgnore
+configFiles
+
+# Ignore local knowledge database
+kb_database.md
