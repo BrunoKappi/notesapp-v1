@@ -42,6 +42,7 @@ const AppUI = (function() {
             const noteDiv = clone.querySelector('.note');
             
             noteDiv.dataset.id = note.id;
+            noteDiv.setAttribute('draggable', 'true');
             noteDiv.style.setProperty('--note-accent-color', note.color || NOTE_COLORS[0]);
             
             if (note.collapsed) {

@@ -501,3 +501,14 @@ body {
     object-fit: contain;
     border-radius: 4px;
 }
+
+/* Drag & Drop Styles */
+.note.dragging {
+    opacity: 0.4;
+    border: 2px dashed rgba(255, 255, 255, 0.4) !important;
+    transform: scale(0.98);
+}
+
+body.light-theme .note.dragging {
+    border: 2px dashed rgba(0, 0, 0, 0.2) !important;
+}

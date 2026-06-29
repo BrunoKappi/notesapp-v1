@@ -183,6 +183,39 @@ const AppEvents = (function() {
                 }
             });
 
+            // Drag and Drop reordering
+            notesContainer.addEventListener('dragstart', (e) => {
+                const noteEl = e.target.closest('.note');
+                if (!noteEl) return;
+                noteEl.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+            });
+
+            notesContainer.addEventListener('dragend', (e) => {
+                const noteEl = e.target.closest('.note');
+                if (noteEl) {
+                    noteEl.classList.remove('dragging');
+                }
+                saveCurrentOrder(notesContainer);
+            });
+
+            notesContainer.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                const dragging = notesContainer.querySelector('.dragging');
+                if (!dragging) return;
+                
+                const closest = getDragAfterElement(notesContainer, e.clientX, e.clientY);
+                if (closest.element) {
+                    if (closest.insertBefore) {
+                        notesContainer.insertBefore(dragging, closest.element);
+                    } else {
+                        notesContainer.insertBefore(dragging, closest.element.nextSibling);
+                    }
+                } else {
+                    notesContainer.appendChild(dragging);
+                }
+            });
+
             // Close dropdowns when clicking outside
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.note-menu-container')) {
@@ -193,4 +226,49 @@ const AppEvents = (function() {
             });
         }
     };
+
+    // Helper functions for drag and drop reordering
+    function getDragAfterElement(container, x, y) {
+        const draggableElements = [...container.querySelectorAll('.note:not(.dragging)')];
+        let closest = { distance: Infinity, element: null, insertBefore: true };
+        
+        draggableElements.forEach(child => {
+            const box = child.getBoundingClientRect();
+            const centerX = box.left + box.width / 2;
+            const centerY = box.top + box.height / 2;
+            const distance = Math.hypot(x - centerX, y - centerY);
+            
+            if (distance < closest.distance) {
+                const insertBefore = x < centerX;
+                closest = { distance, element: child, insertBefore };
+            }
+        });
+        
+        return closest;
+    }
+
+    function saveCurrentOrder(container) {
+        const noteElements = [...container.querySelectorAll('.note')];
+        const idsInOrder = noteElements.map(el => el.dataset.id);
+        
+        const notes = AppStorage.getNotes();
+        const sortedNotes = [];
+        idsInOrder.forEach(id => {
+            const note = notes.find(n => n.id === id);
+            if (note) sortedNotes.push(note);
+        });
+        
+        const visibleIds = new Set(idsInOrder);
+        const finalNotes = [];
+        notes.forEach(note => {
+            if (visibleIds.has(note.id)) {
+                const nextVisible = sortedNotes.shift();
+                if (nextVisible) finalNotes.push(nextVisible);
+            } else {
+                finalNotes.push(note);
+            }
+        });
+        
+        AppStorage.saveNotes(finalNotes);
+    }
 })();
